@@ -75,8 +75,6 @@ public class MainActivity extends ActionBarActivity
         //set UI component
         tvInfoText = (TextView)findViewById(R.id.textInfo);
         tvInfoText.setText("");
-
-
     }
 
     @Override
@@ -102,9 +100,7 @@ public class MainActivity extends ActionBarActivity
             scanLeDevice(true);
         }
 
-        tvInfoText.append(mBluetoothAdapter.getName() + "=> " +
-        mBluetoothAdapter.getAddress()+ "\n\r");
-
+        tvInfoText.append("=> ");
     }
 
     @Override
@@ -200,10 +196,8 @@ public class MainActivity extends ActionBarActivity
             //BluetoothDevice btDevice = result.getDevice();
             //connectToDevice(btDevice);
             //connectToDevice(result.getDevice());
-            if (callbackType == ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
-            {
-                Log.i("callback Type: ", result.toString());
-            }
+            tvInfoText.setText("" + result.getDevice().getName() + ": "
+                    + result.getDevice().getAddress());
         }
 
         @Override
@@ -232,8 +226,8 @@ public class MainActivity extends ActionBarActivity
                 @Override
                 public void run()
                 {
-                    Log.i("onLeScan", device.toString());
-                    connectToDevice(device);
+                    //Log.i("onLeScan", device.toString());
+                    //connectToDevice(device);
                 }
             });
         }
@@ -275,7 +269,7 @@ public class MainActivity extends ActionBarActivity
         {
             List<BluetoothGattService> services = gatt.getServices();
             Log.i("onServicesDiscovered", services.toString());
-            gatt.readCharacteristic(services.get(1).getCharacteristics().get(0));
+            //gatt.readCharacteristic(services.get(1).getCharacteristics().get(0));
             switch (status)
             {
                 case BluetoothGatt.GATT_SUCCESS:
