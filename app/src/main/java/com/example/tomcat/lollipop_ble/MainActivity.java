@@ -32,6 +32,9 @@ import java.util.List;
 import java.util.UUID;
 
 
+//  https://www.jianshu.com/p/be0f3cc505ec
+//  http://www.davidgyoungtech.com/2017/08/07/beacon-detection-with-android-8
+
 @TargetApi(21)
 //public class MainActivity extends AppCompatActivity
 public class MainActivity extends ActionBarActivity
@@ -195,9 +198,9 @@ public class MainActivity extends ActionBarActivity
             Log.i("result", result.toString());
             //BluetoothDevice btDevice = result.getDevice();
             //connectToDevice(btDevice);
-            //connectToDevice(result.getDevice());
             tvInfoText.setText("" + result.getDevice().getName() + ": "
                     + result.getDevice().getAddress());
+            connectToDevice(result.getDevice());
         }
 
         @Override
